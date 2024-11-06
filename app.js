@@ -43,6 +43,7 @@ generateDrumkit();
 rebindBtn.addEventListener("click", () => {
   if (rebinding) return;
   rebinding = true;
+  currentKey = 0;
   drumSet.children[currentKey].classList.toggle("rebinding");
 });
 
@@ -54,7 +55,6 @@ window.addEventListener("keydown", (e) => {
     drumSet.children[currentKey].classList.toggle("rebinding");
     currentKey++;
     if (currentKey >= drumKeys.length) {
-      currentKey = 0;
       rebinding = false;
       generateDrumkit();
       return;
@@ -83,7 +83,7 @@ function generateDrumkit() {
   }
   drumKeys.forEach((e) => {
     const drum = document.createElement("div");
-    drum.className = "drum";
+    drum.classList.add("drum");
     drum.id = e.name;
     drumSet.append(drum);
     drum.addEventListener("mousedown", () => {
@@ -95,8 +95,15 @@ function generateDrumkit() {
         drum.classList.remove("pressed");
       }
     });
+    drum.addEventListener("mouseenter", () => {
+      drum.classList.toggle("hover");
+    });
+    drum.addEventListener("mouseleave", () => {
+      drum.classList.toggle("hover");
+    });
     const drumName = document.createElement("p");
     drumName.textContent = e.name[0].toUpperCase() + e.name.slice(1);
+    drumName.classList.add("text");
 
     const drumImg = document.createElement("img");
     drumImg.src = `./images/${e.name}.jpg`;
@@ -104,6 +111,7 @@ function generateDrumkit() {
 
     const drumKey = document.createElement("kbd");
     drumKey.id = `${e.name}key`;
+    drumKey.classList.add("text");
     drumKey.textContent = e.key.toUpperCase();
     drum.append(drumName, drumImg, drumKey);
   });
