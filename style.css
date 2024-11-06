@@ -39,8 +39,9 @@
   border-radius: 10px;
 }
 
-.hover {
+.drumHover {
   background-color: #363635;
+  cursor: pointer;
 }
 
 .pressed {
@@ -53,7 +54,6 @@
 }
 
 #rebindBtn {
-  color: #f7ebe8;
   background-color: #bf3726;
   border-radius: 5px;
   border: none;
@@ -62,5 +62,11 @@
 }
 
 #rebindBtn:hover {
-  background-color: #bf3826d0;
+  background-color: #bf3826b0;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
